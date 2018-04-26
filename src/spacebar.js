@@ -48,7 +48,7 @@ export default class Spacebar extends Component {
   render() {
     return (
       <Dropzone className={this.state.playing}>
-        <div />
+        <div className="assigned">Ready</div>
       </Dropzone>
     );
   }
