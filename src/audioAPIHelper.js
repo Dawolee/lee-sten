@@ -67,6 +67,7 @@ export default () => {
           clipLabel.textContent = clipName;
         }
 
+        audio.setAttribute('draggable', 'true');
         clipContainer.appendChild(audio);
         clipContainer.appendChild(clipLabel);
         clipContainer.appendChild(deleteButton);
