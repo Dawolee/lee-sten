@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import KeyBoardRow from './keyBoardRow';
-import Spacebar from './spacebar';
+import KeyBoardRow from './KeyBoardRow';
+import Spacebar from './Spacebar';
 
 export default class KeyBoard extends Component {
   constructor(props) {

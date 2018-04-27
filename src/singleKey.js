@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { openhat, snare, kick, ride, crash1, china, cowbell } from './sounds';
+import {
+  openhat,
+  snare,
+  kick,
+  ride,
+  crash1,
+  china,
+  cowbell,
+  clap,
+  applause
+} from './sounds';
 import Dropzone from 'react-dropzone';
 
 export default class SingleKey extends Component {
@@ -66,6 +76,15 @@ export default class SingleKey extends Component {
         this.assign();
       } else if (this.props.keyVal === 76) {
         this.setState({ audio: cowbell });
+        this.assign();
+      } else if (this.props.keyVal === 65) {
+        this.setState({ audio: cowbell });
+        this.assign();
+      } else if (this.props.keyVal === 52) {
+        this.setState({ audio: clap });
+        this.assign();
+      } else if (this.props.keyVal === 55) {
+        this.setState({ audio: applause });
         this.assign();
       }
       window.addEventListener('keydown', e => {

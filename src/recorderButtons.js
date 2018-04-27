@@ -9,7 +9,6 @@ export default class RecordButtons extends Component {
         <p>Record a custom sound!</p>
         <button className="record">Record</button>
         <button className="stop">Stop</button>
-        <section id="soundClips" />
       </div>
     );
   }

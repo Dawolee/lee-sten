@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleKey from './singleKey';
+import SingleKey from './SingleKey';
 
 export default props => {
   return (

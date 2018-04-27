@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Bungee Shade', cursive;
+  background-image: url('./Minimalist-Background-HD.png');
 }
 
 p {
@@ -58,17 +59,19 @@ p {
 .main-components {
   display: flex;
   justify-content: center;
-  margin: 1% auto 1% auto;
+  margin: 6% 0 1% 0;
 }
 
 .recorder-btns {
-  margin-top: 1%;
+  width: 25%;
+  align-self: center;
 }
 
 .youtube-body {
-  display: flex;
+  width: 25%;
+  align-self: center;
 }
 
 #soundClips {
-  margin-top: 10%;
+  margin-top: 2.5%;
 }

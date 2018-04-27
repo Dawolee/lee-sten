@@ -63,7 +63,7 @@ export default class YouTubePlayer extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="youtube-body">
         <div>
           <input
             type="text"
