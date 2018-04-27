@@ -5,7 +5,7 @@ export default class YouTubePlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: null,
+      url: 'https://www.youtube.com/watch?v=Dy4HA3vUv2c',
       urlfield: '',
       playing: true,
       volume: 0.8,

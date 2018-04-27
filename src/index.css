@@ -79,3 +79,7 @@ p {
 .url-bar {
   margin-bottom: 3%;
 }
+
+.cheese {
+  background-image: url('./cheese.jpg');
+}

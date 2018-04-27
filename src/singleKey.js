@@ -106,6 +106,9 @@ export default class SingleKey extends Component {
           this.setState({ playing: 'key' });
         }
         let sound = this.state.audio;
+        if (this.props.keyVal === 49) {
+          this.setState({ playing: 'key assigned cheese' });
+        }
       });
     }
   }
