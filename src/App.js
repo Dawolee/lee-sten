@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import KeyBoard from './keyBoard';
-import RecorderButtons from './recorderButtons';
+import KeyBoard from './KeyBoard';
+import RecorderButtons from './RecorderButtons';
 import Canvas from './canvas';
 import audioHelperFunc from './audioAPIHelper';
+import YouTubePlayer from './YoutubePlayer';
+import Metronome from './Metronome';
 
 class App extends Component {
   componentDidMount() {
@@ -16,8 +18,13 @@ class App extends Component {
           <h1 className="App-title">Lee-sten : Da Woon and Only</h1>
           <Canvas />
         </header>
-        <KeyBoard />
-        <RecorderButtons />
+        <div className="main-components">
+          <RecorderButtons />
+          <KeyBoard />
+          <YouTubePlayer />
+        </div>
+        <Metronome />
+        <section id="soundClips" />
       </div>
     );
   }

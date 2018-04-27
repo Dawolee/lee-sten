@@ -5,12 +5,10 @@ export default class RecordButtons extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <div id="buttons">
-          <button className="record">Record</button>
-          <button className="stop">Stop</button>
-        </div>
-        <section className="sound-clips" />
+      <div className="recorder-btns">
+        <p>Record a custom sound!</p>
+        <button className="record">Record</button>
+        <button className="stop">Stop</button>
       </div>
     );
   }
