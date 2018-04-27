@@ -18,29 +18,31 @@ export default class Spacebar extends Component {
     }
     let soundque = [];
     window.addEventListener('keydown', e => {
+      let sound = this.state.audio;
       if (e.keyCode === 16) {
         soundque.push(16);
       }
       if (e.keyCode === 32) {
         this.setState({ playing: 'space clicked' });
-        if (this.state.audio) {
-          this.state.audio.currentTime = 0;
-          this.state.audio.play();
+        if (sound) {
+          sound.currentTime = 0;
+          sound.play();
         }
         setTimeout(() => {
           this.setState({ playing: 'space' });
         }, 50);
       }
       if (soundque.length) {
-        this.state.audio.loop = true;
+        sound.loop = true;
       }
     });
     window.addEventListener('keyup', e => {
+      let sound = this.state.audio;
       if (e.keyCode === 16) {
         soundque.pop();
       }
       if (!soundque.length) {
-        this.state.audio.loop = false;
+        sound.loop = false;
       }
     });
   }
