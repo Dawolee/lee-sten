@@ -64,7 +64,7 @@ export default class YouTubePlayer extends Component {
   render() {
     return (
       <div className="youtube-body">
-        <div>
+        <div className="url-bar">
           <input
             type="text"
             name="ytURL"
@@ -85,24 +85,17 @@ export default class YouTubePlayer extends Component {
           ref={this.ref}
           onProgress={this.onProgress}
         />
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step="any"
-          value={this.state.played}
-          onMouseDown={this.onSeekMouseDown}
-          onChange={this.onSeekChange}
-          onMouseUp={this.onSeekMouseUp}
-        />
-        <input
-          type="range"
-          min={0}
-          max={1}
-          step="any"
-          value={this.state.volume}
-          onChange={this.setVolume}
-        />
+        <div>
+          <p>Volume Control</p>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step="any"
+            value={this.state.volume}
+            onChange={this.setVolume}
+          />
+        </div>
         <div>
           <label htmlFor="muted">Muted</label>
           <input
@@ -113,6 +106,19 @@ export default class YouTubePlayer extends Component {
           />
         </div>
         <progress max={1} value={this.state.played} />
+        <div>
+          <p>Progress Control</p>
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step="any"
+            value={this.state.played}
+            onMouseDown={this.onSeekMouseDown}
+            onChange={this.onSeekChange}
+            onMouseUp={this.onSeekMouseUp}
+          />
+        </div>
         <div>
           <button onClick={this.playPause}>
             {this.state.playing ? 'Pause' : 'Play'}
