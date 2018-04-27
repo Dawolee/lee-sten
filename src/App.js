@@ -4,6 +4,7 @@ import KeyBoard from './keyBoard';
 import RecorderButtons from './recorderButtons';
 import Canvas from './canvas';
 import audioHelperFunc from './audioAPIHelper';
+import YouTubePlayer from './youtubePlayer';
 
 class App extends Component {
   componentDidMount() {
@@ -16,8 +17,11 @@ class App extends Component {
           <h1 className="App-title">Lee-sten : Da Woon and Only</h1>
           <Canvas />
         </header>
-        <KeyBoard />
-        <RecorderButtons />
+        <div className="main-components">
+          <RecorderButtons />
+          <KeyBoard className="keyboard-body" />
+          <YouTubePlayer className="youtube-body" />
+        </div>
       </div>
     );
   }

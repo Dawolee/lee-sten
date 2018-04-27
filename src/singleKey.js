@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { openhat, snare, kick, ride, crash1, china } from './sounds';
+import { openhat, snare, kick, ride, crash1, china, cowbell } from './sounds';
 import Dropzone from 'react-dropzone';
 
 export default class SingleKey extends Component {
@@ -64,27 +64,32 @@ export default class SingleKey extends Component {
       } else if (this.props.keyVal === 78) {
         this.setState({ audio: crash1 });
         this.assign();
+      } else if (this.props.keyVal === 76) {
+        this.setState({ audio: cowbell });
+        this.assign();
       }
-    }
-    window.addEventListener('keydown', e => {
-      let sound = this.state.audio;
-      if (e.keyCode === this.props.keyVal) {
-        this.state.assigned
-          ? this.setState({ playing: 'key assigned clicked' })
-          : this.setState({ playing: 'key clicked' });
-        if (sound) {
-          sound.currentTime = 0;
-          sound.play();
-        }
-        setTimeout(() => {
+      window.addEventListener('keydown', e => {
+        let sound = this.state.audio;
+        if (e.keyCode === this.props.keyVal) {
           this.state.assigned
-            ? this.setState({ playing: 'key assigned' })
-            : this.setState({ playing: 'key' });
-        }, 50);
-      }
-    });
+            ? this.setState({ playing: 'key assigned clicked' })
+            : this.setState({ playing: 'key clicked' });
+          if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+          }
+        }
+      });
+      window.addEventListener('keyup', e => {
+        if (this.state.assigned) {
+          this.setState({ playing: 'key assigned' });
+        } else {
+          this.setState({ playing: 'key' });
+        }
+        let sound = this.state.audio;
+      });
+    }
   }
-
   render() {
     return (
       <Dropzone

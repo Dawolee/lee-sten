@@ -1,7 +1,7 @@
 export default () => {
   let record = document.querySelector('.record');
   let stop = document.querySelector('.stop');
-  let soundClips = document.querySelector('.sound-clips');
+  let soundClips = document.getElementById('soundClips');
   let canvas = document.querySelector('.visualizer');
 
   stop.disabled = true;
@@ -25,8 +25,6 @@ export default () => {
 
       record.onclick = function() {
         mediaRecorder.start();
-        console.log(mediaRecorder.state);
-        console.log('recorder started');
         record.style.background = 'red';
 
         stop.disabled = false;
@@ -35,8 +33,6 @@ export default () => {
 
       stop.onclick = function() {
         mediaRecorder.stop();
-        console.log(mediaRecorder.state);
-        console.log('recorder stopped');
         record.style.background = '';
         record.style.color = '';
         // mediaRecorder.requestData();
@@ -46,13 +42,10 @@ export default () => {
       };
 
       mediaRecorder.onstop = function(e) {
-        console.log('data available after MediaRecorder.stop() called.');
-
         var clipName = prompt(
           'Enter a name for your sound clip?',
           'My unnamed clip'
         );
-        console.log(clipName);
         var clipContainer = document.createElement('article');
         var clipLabel = document.createElement('p');
         var audio = document.createElement('audio');
@@ -78,7 +71,6 @@ export default () => {
         chunks = [];
         var audioURL = window.URL.createObjectURL(blob);
         audio.src = audioURL;
-        console.log('recorder stopped');
 
         deleteButton.onclick = function(e) {
           let evtTgt = e.target;

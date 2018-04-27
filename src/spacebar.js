@@ -6,16 +6,13 @@ export default class Spacebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      audio: null,
+      audio: hihat,
       assigned: false,
-      playing: 'space'
+      playing: 'space assigned'
     };
   }
 
   componentDidMount() {
-    if (!this.state.assigned) {
-      this.setState({ audio: hihat });
-    }
     let soundque = [];
     window.addEventListener('keydown', e => {
       let sound = this.state.audio;
@@ -23,20 +20,18 @@ export default class Spacebar extends Component {
         soundque.push(16);
       }
       if (e.keyCode === 32) {
-        this.setState({ playing: 'space clicked' });
+        this.setState({ playing: 'space assigned clicked' });
         if (sound) {
           sound.currentTime = 0;
           sound.play();
         }
-        setTimeout(() => {
-          this.setState({ playing: 'space' });
-        }, 50);
       }
       if (soundque.length) {
         sound.loop = true;
       }
     });
     window.addEventListener('keyup', e => {
+      this.setState({ playing: 'space assigned' });
       let sound = this.state.audio;
       if (e.keyCode === 16) {
         soundque.pop();
@@ -48,10 +43,6 @@ export default class Spacebar extends Component {
   }
 
   render() {
-    return (
-      <Dropzone className={this.state.playing}>
-        <div className="assigned">Ready</div>
-      </Dropzone>
-    );
+    return <Dropzone className={this.state.playing} />;
   }
 }

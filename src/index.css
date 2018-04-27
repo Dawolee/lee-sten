@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 body {
   margin: 0;
@@ -6,17 +7,19 @@ body {
   font-family: 'Bungee Shade', cursive;
 }
 
+p {
+  margin: 0;
+}
+
 .keyboard {
-  width: 80%;
-  margin: 0 auto 0 auto;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5% 0 2.5% 0;
 }
 
 .keyboard-row {
-  width: 95%;
+  width: 80%;
   display: flex;
   justify-content: center;
   margin: 2px 0 2px 0;
@@ -25,7 +28,7 @@ body {
 .key {
   width: 50px;
   height: 50px;
-  margin: 0 2px 0 2px;
+  margin: 0 1px 0 1px;
   border-style: solid;
   border-radius: 10%;
 }
@@ -50,4 +53,22 @@ body {
 .visualizer {
   width: 30%;
   height: 80px;
+}
+
+.main-components {
+  display: flex;
+  justify-content: center;
+  margin: 1% auto 1% auto;
+}
+
+.recorder-btns {
+  margin-top: 1%;
+}
+
+.youtube-body {
+  display: flex;
+}
+
+#soundClips {
+  margin-top: 10%;
 }
