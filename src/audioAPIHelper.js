@@ -1,6 +1,5 @@
 export default () => {
   let record = document.querySelector('.record');
-  record.innerHTML = 'asdsa';
   let stop = document.querySelector('.stop');
   let soundClips = document.querySelector('.sound-clips');
   let canvas = document.querySelector('.visualizer');
