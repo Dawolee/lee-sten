@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactPlayer, { YouTubeConfig } from 'react-player';
+import ReactPlayer from 'react-player';
 
 export default class YouTubePlayer extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class YouTubePlayer extends Component {
     this.state = {
       url: 'https://www.youtube.com/watch?v=Dy4HA3vUv2c',
       urlfield: '',
-      playing: true,
+      playing: false,
       volume: 0.8,
       muted: false,
       played: 0,

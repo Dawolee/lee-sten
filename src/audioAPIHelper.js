@@ -42,10 +42,7 @@ export default () => {
       };
 
       mediaRecorder.onstop = function(e) {
-        var clipName = prompt(
-          'Enter a name for your sound clip?',
-          'My unnamed clip'
-        );
+        var clipName = prompt('Enter a name', '');
         var clipContainer = document.createElement('article');
         var clipLabel = document.createElement('p');
         var audio = document.createElement('audio');

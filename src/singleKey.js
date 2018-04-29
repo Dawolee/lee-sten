@@ -23,33 +23,40 @@ export default class SingleKey extends Component {
   }
 
   addSound(acceptedFiles, rejectedFiles) {
-    if (!this.state.assigned) {
-      const promise = new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(acceptedFiles[0]);
-        reader.onload = () => {
-          if (!!reader.result) {
-            resolve(reader.result);
-          } else {
-            reject(Error('Failed converting to base64'));
-          }
-        };
-      });
-      promise
-        .then(result => {
-          let sound = new Audio(result);
-          this.setState({ assigned: true });
-          this.setState({ audio: sound });
-          this.setState({ playing: 'key assigned' });
-        })
-        .catch(err => console.log(err));
-    }
+    const promise = new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(acceptedFiles[0]);
+      reader.onload = () => {
+        if (!!reader.result) {
+          resolve(reader.result);
+        } else {
+          reject(Error('Failed converting to base64'));
+        }
+      };
+    });
+    promise
+      .then(result => {
+        let sound = new Audio(result);
+        this.setState({
+          assigned: true,
+          audio: sound,
+          playing: 'key assigned'
+        });
+      })
+      .catch(err => console.log(err));
   }
 
   assign() {
     this.setState({ assigned: true });
     this.setState({ playing: 'key assigned' });
   }
+
+  // reset(key) {
+  //   const defaultKeys = [90, 88, 67, 86, 66, 77, 78, 76, 65, 52, 55];
+  //   if (defaultKeys.indexOf(key) === -1) {
+  //     this.setState({ audio: null, playing: 'key' });
+  //   }
+  // }
 
   componentDidMount() {
     if (!this.state.assigned) {
@@ -97,6 +104,9 @@ export default class SingleKey extends Component {
             sound.currentTime = 0;
             sound.play();
           }
+          if (this.props.keyVal === 49) {
+            this.setState({ playing: 'key assigned cheese' });
+          }
         }
       });
       window.addEventListener('keyup', e => {
@@ -104,10 +114,6 @@ export default class SingleKey extends Component {
           this.setState({ playing: 'key assigned' });
         } else {
           this.setState({ playing: 'key' });
-        }
-        let sound = this.state.audio;
-        if (this.props.keyVal === 49) {
-          this.setState({ playing: 'key assigned cheese' });
         }
       });
     }
