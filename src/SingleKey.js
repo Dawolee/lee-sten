@@ -51,14 +51,28 @@ export default class SingleKey extends Component {
     this.setState({ playing: 'key assigned' });
   }
 
-  // reset(key) {
-  //   const defaultKeys = [90, 88, 67, 86, 66, 77, 78, 76, 65, 52, 55];
-  //   if (defaultKeys.indexOf(key) === -1) {
-  //     this.setState({ audio: null, playing: 'key' });
-  //   }
-  // }
-
   componentDidMount() {
+    const { socket } = this.props;
+    socket.on('clickedToAll', val => {
+      let aud = this.state.audio;
+      if (this.props.keyVal === val.val) {
+        this.setState({ playing: 'key assigned clicked' });
+        this.state.assigned
+          ? this.setState({ playing: 'key assigned clicked' })
+          : this.setState({ playing: 'key clicked' });
+        if (this.state.audio) {
+          aud.currentTime = 0;
+          aud.play();
+        }
+        setTimeout(() => {
+          if (this.state.assigned) {
+            this.setState({ playing: 'key assigned ' });
+          } else {
+            this.setState({ playing: 'key' });
+          }
+        }, 50);
+      }
+    });
     if (!this.state.assigned) {
       if (this.props.keyVal === 90) {
         this.setState({ audio: kick });
@@ -97,6 +111,7 @@ export default class SingleKey extends Component {
       window.addEventListener('keydown', e => {
         let sound = this.state.audio;
         if (e.keyCode === this.props.keyVal) {
+          socket.emit('click', this.props.keyVal);
           this.state.assigned
             ? this.setState({ playing: 'key assigned clicked' })
             : this.setState({ playing: 'key clicked' });

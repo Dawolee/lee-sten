@@ -6,6 +6,8 @@ import Canvas from './canvas';
 import audioHelperFunc from './audioAPIHelper';
 import YouTubePlayer from './YoutubePlayer';
 import Metronome from './Metronome';
+import socketIOClient from 'socket.io-client';
+const socket = socketIOClient('http://192.168.1.151:3001/');
 
 class App extends Component {
   componentDidMount() {
@@ -20,7 +22,7 @@ class App extends Component {
         </header>
         <div className="main-components">
           <RecorderButtons />
-          <KeyBoard />
+          <KeyBoard socket={socket} />
           <YouTubePlayer />
         </div>
         <Metronome />

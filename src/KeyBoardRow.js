@@ -5,7 +5,7 @@ export default props => {
   return (
     <div className="keyboard-row">
       {props.keyValues.map(key => {
-        return <SingleKey key={key} keyVal={key} />;
+        return <SingleKey key={key} keyVal={key} socket={props.socket} />;
       })}
     </div>
   );
