@@ -17,9 +17,15 @@ export default class KeyBoard extends Component {
     return (
       <div className="keyboard">
         {Object.keys(this.state).map(row => {
-          return <KeyBoardRow key={row} keyValues={this.state[row]} />;
+          return (
+            <KeyBoardRow
+              key={row}
+              keyValues={this.state[row]}
+              socket={this.props.socket}
+            />
+          );
         })}
-        <Spacebar keyVal={32} />
+        <Spacebar keyVal={32} socket={this.props.socket} />
       </div>
     );
   }

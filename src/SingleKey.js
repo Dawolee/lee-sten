@@ -7,8 +7,9 @@ import {
   crash1,
   china,
   cowbell,
-  clap,
-  applause
+  hadoken,
+  applause,
+  shoryuken
 } from './sounds';
 import Dropzone from 'react-dropzone';
 
@@ -51,14 +52,28 @@ export default class SingleKey extends Component {
     this.setState({ playing: 'key assigned' });
   }
 
-  // reset(key) {
-  //   const defaultKeys = [90, 88, 67, 86, 66, 77, 78, 76, 65, 52, 55];
-  //   if (defaultKeys.indexOf(key) === -1) {
-  //     this.setState({ audio: null, playing: 'key' });
-  //   }
-  // }
-
   componentDidMount() {
+    const { socket } = this.props;
+    socket.on('clickedToAll', val => {
+      let aud = this.state.audio;
+      if (this.props.keyVal === val.val) {
+        this.setState({ playing: 'key assigned clicked' });
+        this.state.assigned
+          ? this.setState({ playing: 'key assigned clicked' })
+          : this.setState({ playing: 'key clicked' });
+        if (this.state.audio) {
+          aud.currentTime = 0;
+          aud.play();
+        }
+        setTimeout(() => {
+          if (this.state.assigned) {
+            this.setState({ playing: 'key assigned ' });
+          } else {
+            this.setState({ playing: 'key' });
+          }
+        }, 50);
+      }
+    });
     if (!this.state.assigned) {
       if (this.props.keyVal === 90) {
         this.setState({ audio: kick });
@@ -85,10 +100,10 @@ export default class SingleKey extends Component {
         this.setState({ audio: cowbell });
         this.assign();
       } else if (this.props.keyVal === 65) {
-        this.setState({ audio: cowbell });
+        this.setState({ audio: hadoken });
         this.assign();
       } else if (this.props.keyVal === 52) {
-        this.setState({ audio: clap });
+        this.setState({ audio: shoryuken });
         this.assign();
       } else if (this.props.keyVal === 55) {
         this.setState({ audio: applause });
@@ -97,6 +112,7 @@ export default class SingleKey extends Component {
       window.addEventListener('keydown', e => {
         let sound = this.state.audio;
         if (e.keyCode === this.props.keyVal) {
+          socket.emit('click', this.props.keyVal);
           this.state.assigned
             ? this.setState({ playing: 'key assigned clicked' })
             : this.setState({ playing: 'key clicked' });
@@ -110,10 +126,12 @@ export default class SingleKey extends Component {
         }
       });
       window.addEventListener('keyup', e => {
-        if (this.state.assigned) {
-          this.setState({ playing: 'key assigned' });
-        } else {
-          this.setState({ playing: 'key' });
+        if (e.keyCode === this.props.keyVal) {
+          if (this.state.assigned) {
+            this.setState({ playing: 'key assigned' });
+          } else {
+            this.setState({ playing: 'key' });
+          }
         }
       });
     }
