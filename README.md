@@ -12,4 +12,5 @@ There is also a YouTube player on the side, in which you just copy and paste a u
 
 There is a web-sockets port listening on port 3001. You should run the server.js to start up the port and make sure that the port number matches your the port number in the App.js socket constant.
 ex) const socket = socketIOClient('http://youripadddress:3001/')
+If you don't update the ip address inside the socket constant in App.js, your console in the browser will log some socket related errors but it shouldn't affect the web app from running.
 Other people can join your session and it will console log in the browser whenever someone has entered or left the room.
