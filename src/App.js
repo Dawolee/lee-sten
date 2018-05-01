@@ -7,13 +7,27 @@ import audioHelperFunc from './audioAPIHelper';
 import YouTubePlayer from './YoutubePlayer';
 import Metronome from './Metronome';
 import socketIOClient from 'socket.io-client';
-const socket = socketIOClient('http://192.168.1.151:3001/');
+const socket = socketIOClient('exampleipfollowedbyport3001');
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      joined: false,
+      left: false
+    };
+  }
   componentDidMount() {
     audioHelperFunc();
   }
+
   render() {
+    socket.on('joined', () => {
+      console.log('someone has joined the room!');
+    });
+    socket.on('left', () => {
+      console.log('someone has left the room!');
+    });
     return (
       <div className="App">
         <header className="App-header">

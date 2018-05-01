@@ -16,11 +16,13 @@ const io = socketIO(server);
 // This is what the socket.io syntax is like, we will work this later
 io.on('connection', socket => {
   console.log('User connected', socket.id);
+  socket.broadcast.emit('joined');
   socket.on('click', val => {
     const value = { val };
     socket.broadcast.emit('clickedToAll', value);
   });
   socket.on('disconnect', () => {
+    socket.broadcast.emit('left');
     console.log('user disconnected', socket.id);
   });
 });

@@ -10,6 +10,8 @@ import chinaWAV from './china.wav';
 import cowbellWAV from './cowbell.wav';
 import handclapWAV from './handclap.wav';
 import applauseWAV from './APPLAUS2.wav';
+import shoryukenMP3 from './shoryuken.mp3';
+import hadokenMP3 from './hadoken.mp3';
 
 export const hihat = new Audio(hihatWAV);
 export const openhat = new Audio(openhatWAV);
@@ -23,3 +25,5 @@ export const china = new Audio(chinaWAV);
 export const cowbell = new Audio(cowbellWAV);
 export const applause = new Audio(applauseWAV);
 export const clap = new Audio(handclapWAV);
+export const shoryuken = new Audio(shoryukenMP3);
+export const hadoken = new Audio(hadokenMP3);
